@@ -1,0 +1,22 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+<bean class="springdemo_27022024.Mobile27022024" name="mobile27022024">
+	<property name="mobilecolour" value="gold"></property>
+	<property name="mobileBrand" value="oneplus"></property>
+	<property name="mobileRam" value="12"></property>
+	<!-- <property name="sim" value="new JioSim()"></property>//not possible. bcz when you write value it will consider it as String
+	<property name="sim" value="springdemo_27022024.JioSim27022024"></property>//not possible. bcz when you write value it will consider it as String. if it is a number it will do parseInt(). but it is not possible to convert String to any another object. String is non-primtive. so, we need to do non primitive type casting. so, if String i need to convert it to another type then i need to do upcasting. for example, if i ineed to convert String to Laptop object then i need to do upcasting. to do upcasting there should be inheritance. here , there is no inheritance between Mobile object and String.  String can i inherit? it is a final class ,we cannot inherited. if there is no inheritance, there is no concept of upcasting and downcasting. so, there isno way to convert String to JioSim or String to AirtelSim it isnot possible.  -->
+	<property name="sim" ref="AirtelSimRef"></property><!--we do dependency injection with the help of Ref. Ref will inject the object. basically now, inside this variable, AirtelSim object is inserted through spring -->
+</bean>
+<bean name="AirtelSimRef" class="springdemo_27022024.AirtelSim"></bean><!--this will create object for AirtelSim-->
+<bean class="springdemo_27022024.Laptop27022024" name="laptop27022024">
+	<constructor-arg value="Silver"></constructor-arg>
+	<constructor-arg index="2" value="HP"></constructor-arg>
+	<constructor-arg index="1" value="1024"></constructor-arg>
+	<constructor-arg index="3" ref="SolidStateDrivesRef"></constructor-arg>
+</bean>
+<bean class="springdemo_27022024.SolidStateDrives" name="SolidStateDrivesRef"></bean>
+</beans>
